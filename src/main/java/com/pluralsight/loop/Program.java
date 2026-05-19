@@ -1,6 +1,5 @@
 package com.pluralsight.loop;
-
-import stream.Person;
+import com.pluralsight.loop.Person;
 import ui.Console;
 
 import java.util.ArrayList;
@@ -22,26 +21,17 @@ public class Program {
         people.add(new Person("Mia", "Thomas", 31));
 
 
-        System.out.println("Average age of this list is: " + Person.calculateAverageAgeStreamMethod(people));
+        System.out.println("Average age of this list is: " + Person.calculateAverageAge(people));
         System.out.println("Youngest person is " + Person.getYoungest(people));
         System.out.println("Oldest person is: " +Person.getOldest(people));
-
-        System.out.println(Person.getSummaryStat(people));
 
         boolean isSearching = true;
         while (isSearching){
             String search = Console.askForString("Enter a name to search for.");
 
+            System.out.println(Person.searchForPerson(people, search));
 
-            List<Person> matchingPeople = people.stream()
-                    .filter(p -> p.getFirstName().equalsIgnoreCase(search) || p.getLastName().equalsIgnoreCase(search))
-                    .toList();
 
-            if(matchingPeople.size() <= 0){
-                System.out.println("No results found.");
-            } else {
-                System.out.println(matchingPeople);
-            }
 
         }
 

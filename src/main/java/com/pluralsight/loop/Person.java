@@ -1,4 +1,5 @@
 package com.pluralsight.loop;
+
 import java.util.List;
 
 class Person {
@@ -36,37 +37,59 @@ class Person {
         this.age = age;
     }
 
-    public static double calculateAverageAge(List<stream.Person> people){
-        int avg = 0;
-        for(stream.Person p : people){
-            avg += p.getAge();
+    public static double calculateAverageAge(List<Person> people) {
+        if (people == null || people.isEmpty()) {
+            return 0;
         }
-        return (double) avg / people.size();
 
+        int sum = 0;
+        for (Person p : people) {
+            sum += p.getAge();
+        }
+
+        return (double) sum / people.size();
     }
 
-    public static stream.Person getYoungest(List<stream.Person> people){
-        stream.Person youngest = people.getFirst();
-        for (stream.Person p : people){
-            if (p.getAge() < youngest.getAge()){
+    public static Person searchForPerson(List<Person> people, String search){
+        for(Person p : people){
+            if (search.equalsIgnoreCase(p.getFirstName()) ||  search.equalsIgnoreCase(p.getLastName())) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public static Person getYoungest(List<Person> people) {
+        if (people == null || people.isEmpty()) {
+            return null;
+        }
+
+        Person youngest = people.getFirst();
+
+        for (Person p : people) {
+            if (p.getAge() < youngest.getAge()) {
                 youngest = p;
             }
         }
 
-        return  youngest;
+        return youngest;
     }
 
-    public static stream.Person getOldest(List<stream.Person> people){
-        stream.Person oldest = people.getFirst();
-        for(stream.Person p : people){
-            if(p.getAge() > oldest.getAge()){
+    public static Person getOldest(List<Person> people) {
+        if (people == null || people.isEmpty()) {
+            return null;
+        }
+
+        Person oldest = people.get(0);
+
+        for (Person p : people) {
+            if (p.getAge() > oldest.getAge()) {
                 oldest = p;
             }
         }
-        return  oldest;
+
+        return oldest;
     }
-
-
 
     @Override
     public String toString() {
