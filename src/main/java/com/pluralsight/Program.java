@@ -29,6 +29,9 @@ public class Program {
             List<Person> matchingPeople = people.stream()
                     .filter(p -> p.getFirstName().equalsIgnoreCase(search) || p.getLastName().equalsIgnoreCase(search))
                     .toList();
+            double avg = Person.calculateAverageAge(people);
+
+            System.out.println("Average age of this list is: " + avg);
 
             if(matchingPeople.size() <= 0){
                 System.out.println("No results found.");
@@ -39,4 +42,7 @@ public class Program {
         }
 
     }
+
+
+
 }

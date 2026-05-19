@@ -1,5 +1,7 @@
 package com.pluralsight.loop;
 
+import java.util.List;
+
 public class Person {
     String firstName;
     String lastName;
@@ -33,6 +35,16 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public static double calculateAverageAge(List<Person> people){
+        int avg = 0;
+
+        for(Person p : people){
+            avg += p.getAge();
+        }
+
+        return (double) avg / people.size();
     }
 
     @Override
