@@ -1,7 +1,10 @@
-package com.pluralsight.loop;
+package stream;
+
+import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
-class Person {
+public class Person {
     String firstName;
     String lastName;
     int age;
@@ -36,34 +39,33 @@ class Person {
         this.age = age;
     }
 
-    public static double calculateAverageAge(List<stream.Person> people){
+    public static double calculateAverageAge(List<Person> people){
         int avg = 0;
-        for(stream.Person p : people){
+        for(Person p : people){
             avg += p.getAge();
         }
         return (double) avg / people.size();
 
     }
 
-    public static stream.Person getYoungest(List<stream.Person> people){
-        stream.Person youngest = people.getFirst();
-        for (stream.Person p : people){
-            if (p.getAge() < youngest.getAge()){
-                youngest = p;
-            }
-        }
-
-        return  youngest;
+    public static double calculateAverageAgeStreamMethod(List<Person> people){
+        return people.stream().mapToInt(Person::getAge).average().orElse(0);
     }
 
-    public static stream.Person getOldest(List<stream.Person> people){
-        stream.Person oldest = people.getFirst();
-        for(stream.Person p : people){
-            if(p.getAge() > oldest.getAge()){
-                oldest = p;
-            }
-        }
-        return  oldest;
+    public static IntSummaryStatistics getSummaryStat(List<Person> people){
+        return people.stream().mapToInt(Person::getAge).summaryStatistics();
+    }
+
+    public static Person getYoungest(List<Person> people){
+       return people.stream()
+               .min(Comparator.comparing(Person::getAge))
+               .orElse(null);
+    }
+
+    public static Person getOldest(List<Person> people){
+        return people.stream()
+                .max(Comparator.comparing(Person::getAge))
+                .orElse(null);
     }
 
 

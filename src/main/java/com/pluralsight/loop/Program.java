@@ -1,7 +1,7 @@
-package com.pluralsight;
+package com.pluralsight.loop;
 
-import com.pluralsight.loop.Person;
-import com.pluralsight.ui.Console;
+import stream.Person;
+import ui.Console;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +22,11 @@ public class Program {
         people.add(new Person("Mia", "Thomas", 31));
 
 
-        System.out.println("Average age of this list is: " + Person.calculateAverageAge(people));
+        System.out.println("Average age of this list is: " + Person.calculateAverageAgeStreamMethod(people));
         System.out.println("Youngest person is " + Person.getYoungest(people));
         System.out.println("Oldest person is: " +Person.getOldest(people));
 
+        System.out.println(Person.getSummaryStat(people));
 
         boolean isSearching = true;
         while (isSearching){
