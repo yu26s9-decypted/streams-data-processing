@@ -71,7 +71,7 @@ class Person {
     }
 
     public static Person getOldest(List<Person> people) {
-        Person oldest = people.get(0);
+        Person oldest = people.getFirst();
         for (Person p : people) {
             if (p.getAge() > oldest.getAge()) {
                 oldest = p;
