@@ -1,5 +1,6 @@
 package com.pluralsight.loop;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Person {
@@ -47,12 +48,22 @@ public class Person {
         return (double) avg / people.size();
     }
 
+    public static Person getYoungest(List<Person> people){
+       return people.stream()
+               .min(Comparator.comparing(Person::getAge))
+               .orElse(null);
+    }
+
+    public static Person getOldest(List<Person> people){
+        return people.stream()
+                .max(Comparator.comparing(Person::getAge))
+                .orElse(null);
+    }
+
+
+
     @Override
     public String toString() {
-        return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
+        return String.format("%s %s %d", firstName, lastName, age);
     }
 }

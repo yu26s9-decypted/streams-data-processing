@@ -21,17 +21,20 @@ public class Program {
         people.add(new Person("Ethan", "Anderson", 47));
         people.add(new Person("Mia", "Thomas", 31));
 
-        boolean isSearching = true;
 
+        System.out.println("Average age of this list is: " + Person.calculateAverageAge(people));
+        System.out.println("Youngest person is " + Person.getYoungest(people));
+        System.out.println("Oldest person is: " +Person.getOldest(people));
+
+
+        boolean isSearching = true;
         while (isSearching){
             String search = Console.askForString("Enter a name to search for.");
+
 
             List<Person> matchingPeople = people.stream()
                     .filter(p -> p.getFirstName().equalsIgnoreCase(search) || p.getLastName().equalsIgnoreCase(search))
                     .toList();
-            double avg = Person.calculateAverageAge(people);
-
-            System.out.println("Average age of this list is: " + avg);
 
             if(matchingPeople.size() <= 0){
                 System.out.println("No results found.");
