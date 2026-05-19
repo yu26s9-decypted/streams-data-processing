@@ -60,12 +60,7 @@ class Person {
     }
 
     public static Person getYoungest(List<Person> people) {
-        if (people == null || people.isEmpty()) {
-            return null;
-        }
-
         Person youngest = people.getFirst();
-
         for (Person p : people) {
             if (p.getAge() < youngest.getAge()) {
                 youngest = p;
@@ -76,12 +71,7 @@ class Person {
     }
 
     public static Person getOldest(List<Person> people) {
-        if (people == null || people.isEmpty()) {
-            return null;
-        }
-
         Person oldest = people.get(0);
-
         for (Person p : people) {
             if (p.getAge() > oldest.getAge()) {
                 oldest = p;
